@@ -6,6 +6,8 @@ RSpec.describe QuestionsController, type: :controller do
   let(:old_body)  { question.body }
   let(:user)      { create(:user) }
 
+  it_behaves_like 'voted_question'
+
   describe 'GET #index' do
     let(:questions) { create_list(:question, 3) }
 

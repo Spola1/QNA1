@@ -2,6 +2,8 @@ div class = "answer-#{answer.id}"
 
   p= answer.body
 
+  = render 'shared/vote', resource: answer
+
   div class = "links-#{answer.id}"
     = render partial: 'links/links', locals: { resource: answer}
 

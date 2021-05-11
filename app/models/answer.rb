@@ -1,4 +1,6 @@
 class Answer < ApplicationRecord
+  include Votable
+
   belongs_to :question
   belongs_to :user
   has_many :links, dependent: :destroy, as: :linkable
@@ -10,7 +12,7 @@ class Answer < ApplicationRecord
   validates :body, presence: true
 
   def mark_as_best
-    self.transaction do
+    transaction do
       question.update!(best_answer_id: id)
       question.award&.update!(user: user)
     end
@@ -21,7 +23,7 @@ class Answer < ApplicationRecord
   end
 
   def unmark_as_best
-    self.transaction do
+    transaction do
       question.update!(best_answer_id: nil)
       question.award&.update!(user: nil)
     end

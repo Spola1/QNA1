@@ -7,6 +7,8 @@ RSpec.describe AnswersController, type: :controller do
   let(:old_body)  { answer.body }
   let(:question_w) { create(:question, :with_best_answer, user: user) }
 
+  it_behaves_like 'voted_answer'
+
   describe 'Get #edit' do
     it 'renders edit view for authorized author' do
       login(answer.user)

@@ -36,6 +36,7 @@ gem "google-cloud-storage", "~> 1.11", require: false
 gem 'cocoon'
 gem 'mini_magick'
 gem 'validate_url'
+gem 'with_model'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
