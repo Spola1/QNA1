@@ -9,11 +9,15 @@ class AnswersController < ApplicationController
   def create
     @answer = current_user.answers.new(answer_params)
     @answer.question = question
+    attach_files(@answer)
     @answer.save
   end
 
   def update
-    answer.update(answer_params) if current_user.author?(answer)
+    if current_user.author?(answer)
+      attach_files(answer)
+      answer.update(answer_params)
+    end
   end
 
   def best
@@ -22,6 +26,7 @@ class AnswersController < ApplicationController
 
   def destroy
     if current_user.author?(answer)
+      answer.unmark_as_best if answer.best?
       answer.destroy
     else
       flash.now[:notice] = "You cant't delete someone else's answer"
@@ -40,5 +45,9 @@ class AnswersController < ApplicationController
 
   def answer_params
     params.require(:answer).permit(:body)
+  end
+
+  def attach_files(answer)
+    answer.files.attach(params[:answer][:files]) if params[:answer][:files].present?
   end
 end

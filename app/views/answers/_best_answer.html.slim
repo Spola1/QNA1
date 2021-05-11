@@ -3,13 +3,8 @@ div class = "answer-#{best_answer.id}"
   b Best answer
   p= best_answer.body
 
+  div class = "attachments-#{best_answer.id}"
+    = render partial:'attachments/attachments', locals: {resource: best_answer, hide: false}
+
   -if current_user&.author?(best_answer)
-
-    = link_to 'Edit', '#', class: 'edit-answer-link', data: { answer_id: best_answer.id}
-
-    = form_with model: @best_answer, local: false, class: 'hidden', html: {id: "edit-answer-#{best_answer.id}"} do |f|
-      = f.label :body, 'Your answer'
-      = f.text_area :body
-      = f.submit 'Save'
-
-    = link_to 'Delete answer', answer_path(best_answer), remote: true, method: :delete
+    = render partial: 'answers/form', locals: { answer: best_answer}
