@@ -1,6 +1,6 @@
 div class = "question-#{question.id}"
 
-  b= question.title
-  p= link_to question.body, question_path(question)
+  .collection-item
+    pre = link_to question.title, question_path(question)
 
-  = render partial: 'form', locals: { question: question }
+  = render partial: 'questions/form', locals: { question: question }

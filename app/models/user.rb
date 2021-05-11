@@ -4,10 +4,11 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :questions, dependent: :destroy
-  has_many :answers, dependent: :destroy
+  has_many :questions,  dependent: :destroy
+  has_many :answers,    dependent: :destroy
   has_many :awards
-  has_many :votes, dependent: :destroy
+  has_many :votes,      dependent: :destroy
+  has_many :comments,   dependent: :destroy
 
   def author?(object)
     id == object.user_id

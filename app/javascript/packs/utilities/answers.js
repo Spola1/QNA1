@@ -21,5 +21,5 @@ function editAnswer(event){
 
   $(this).hide()
   var answerId = $(this).data('answerId')
-  $('form#edit-answer-' + answerId).removeClass('hidden')
+  $('form#edit-answer-' + answerId).removeClass('d-none')
 }

@@ -10,6 +10,9 @@ div class = "answer-#{answer.id}"
   div class = "attachments-#{answer.id}"
     = render partial: 'attachments/attachments', locals: {resource: answer}
 
+  div class = "comments-#{answer.id}"
+    = render partial: 'comments/comments', locals: {resource: answer}
+
   -if current_user&.author?(answer.question)
     = link_to 'Choose', best_answer_path(answer), remote: true, method: :patch
 

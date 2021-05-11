@@ -2,16 +2,16 @@
 
   = link_to 'Edit', '#', class: 'edit-question-link', data: { question_id: question.id}
 
-  div class = "award-#{question.id} hidden"
+  div class = "award-#{question.id} d-none"
     = render partial: 'awards/awards', locals: {question: question }
 
-  div class = "attachments-#{question.id} hidden"
+  div class = "attachments-#{question.id} d-none"
     = render partial: 'attachments/attachments', locals: { resource: question }
 
-  div class = "links-#{question.id} hidden"
+  div class = "links-#{question.id} d-none"
     = render partial: 'links/links', locals: { resource: question }
 
-  = form_with model: question, local: false, class: 'hidden', html: {id: "edit-question-#{question.id}"} do |f|
+  = form_with model: question, local: false, class: 'd-none', html: {id: "edit-question-#{question.id}"} do |f|
     p
       = f.label :title, 'Title'
       = f.text_field :title

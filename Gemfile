@@ -31,12 +31,18 @@ gem 'active_storage_validations'
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'slim-rails'
 gem 'jquery-rails'
+gem 'gon'
+gem 'cocoon'
+gem 'octicons_helper'
+gem 'handlebars-source', '~> 4.7', '>= 4.7.7'
 gem "aws-sdk-s3", require: false
 gem "google-cloud-storage", "~> 1.11", require: false
 gem 'cocoon'
 gem 'mini_magick'
 gem 'validate_url'
 gem 'with_model'
+gem 'slim-rails'
+gem 'bootstrap-sass'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

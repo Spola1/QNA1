@@ -1,0 +1,4 @@
+$('.comments-' + '<%= @commentable.id%>').append('<%= @comment.body %>')
+$('.comments-form-'+ '<%= @commentable.id%>'+' #comment_body').val('')
+$('.comments-form-'+ '<%= @commentable.id%>').addClass('d-none')
+$('.add-comment-link#'+ '<%= @commentable.id%>').removeClass('d-none')
