@@ -4,14 +4,15 @@
 h1= @question.title
 p= @question.body
 
-= render 'shared/errors', resource: @answer
+.answers
+  -if @question.best_answer
+    = render partial: 'answers/best_answer', object: @question.best_answer
+  = render partial:'answers/answer', collection: @question.other_answers, as: :answer
 
-= form_with model: [@question, @answer], local: true  do |f|
-  = f.label :body
+.answer-errors
+  = render 'shared/errors', resource: @new_answer
+
+= form_with model: [@question, @new_answer], local: false, class: 'new-answer' do |f|
+  = f.label :body, 'Your answer'
   = f.text_area :body
   = f.submit 'Post answer'
-
-table
-  tr
-    th Answers
-    = render @question.answers

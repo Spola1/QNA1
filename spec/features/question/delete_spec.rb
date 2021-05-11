@@ -6,7 +6,7 @@ feature 'Author can delete his question', "
   I'd like to be able to delete my question
 " do
   given(:question) { create(:question) }
-  given(:user) { create(:user) }
+  given(:user)     { create(:user) }
 
   scenario 'Authenticated author try to delete his question' do
     sign_in(question.user)

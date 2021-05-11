@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  let(:question) { create(:question) }
-  let(:user)     { create(:user) }
+  let!(:question) { create(:question) }
+  let(:user)      { create(:user) }
 
   it { should have_many(:questions).dependent(:destroy) }
   it { should have_many(:answers).dependent(:destroy) }

@@ -1,8 +1,0 @@
--if current_user&.author?(answer)
-  = link_to 'Delete answer', answer_path(answer), method: :delete
-
-= render 'shared/errors', resource: answer
-
-h1 = answer.question.title
-
-h2 = answer.body
