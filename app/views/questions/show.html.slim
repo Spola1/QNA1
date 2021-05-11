@@ -12,6 +12,9 @@ div class = "attachments-#{@question.id}"
 div class = "links-#{@question.id}"
   = render partial: 'links/links', locals: { resource: @question}
 
+div class = "comments-#{@question.id}"
+  = render partial: 'comments/comments', locals: { resource: @question}
+
 .answers
   -if @question.best_answer
     = render partial: 'answers/best_answer', object: @question.best_answer

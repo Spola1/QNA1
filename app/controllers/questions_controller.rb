@@ -3,6 +3,7 @@ class QuestionsController < ApplicationController
 
   before_action :authenticate_user!, except: %i[index show]
   helper_method :question
+  after_action :publish_question, only: %i[create]
 
   def index
     @questions = Question.all
@@ -13,6 +14,7 @@ class QuestionsController < ApplicationController
     @new_answer = Answer.new
     @link = @new_answer.links.new
     question
+    gon.current_user_id = current_user&.id
   end
 
   def new
@@ -67,5 +69,11 @@ class QuestionsController < ApplicationController
 
   def attach_files(question)
     question.files.attach(params[:question][:files]) if params[:question][:files].present?
+  end
+
+  def publish_question
+    return if @question.errors.any?
+
+    ActionCable.server.broadcast('questions', question: @question)
   end
 end

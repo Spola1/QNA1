@@ -1,4 +1,4 @@
-- if resource&.links.length != 0
+- if resource&.links.any?
   p Links:
   - resource.links.each do |link|
     p

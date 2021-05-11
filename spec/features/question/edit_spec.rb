@@ -28,8 +28,6 @@ feature 'User can edit his question', "
 
         expect(page).to_not have_content question.title
         expect(page).to have_content 'new title'
-        expect(page).to_not have_content question.body
-        expect(page).to have_content 'edited question'
         expect(page).to_not have_selector 'textarea'
       end
     end

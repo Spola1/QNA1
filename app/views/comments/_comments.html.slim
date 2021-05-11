@@ -1,0 +1,6 @@
+- if resource&.comments.any?
+  h4 Comments
+  - resource.comments.each do |comment|
+    p= comment.body
+
+= render partial: 'comments/form', locals: { commentable: resource }

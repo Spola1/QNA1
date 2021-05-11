@@ -15,10 +15,13 @@ global.$ = global.jQuery = jQuery;
 window.$ = window.jQuery = jQuery;
 
 //require("jquery")
+require("bootstrap")
+
 require("@nathanvda/cocoon")
 require("packs/utilities/answers")
 require("packs/utilities/questions")
 require("packs/utilities/vote")
+require("packs/utilities/comments")
 
 Rails.start()
 Turbolinks.start()

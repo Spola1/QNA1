@@ -43,6 +43,16 @@ FactoryBot.define do
       end
     end
 
+    factory :question_with_comments do
+      transient do
+        comments_count { 3 }
+      end
+
+      after(:create) do |_comment, evaluator|
+        create_list(:comment, evaluator.comments_count, commentable: question)
+      end
+    end
+
     factory :question_with_answers do
       transient do
         answers_count { 5 }

@@ -14,19 +14,19 @@ div class = "rating-#{resource.id}"
         = link_to 'Up', polymorphic_path(resource, action: :vote_up),
                         remote: true,
                         method: :patch,
-                        class: "vote link-vote-#{resource.id} hidden",
+                        class: "vote link-vote-#{resource.id} d-none",
                         data:{ type: :json }
 
         = link_to 'Down', polymorphic_path(resource, action: :vote_down),
                           remote: true,
                           method: :patch,
-                          class: "vote link-vote-#{resource.id} hidden",
+                          class: "vote link-vote-#{resource.id} d-none",
                           data:{ type: :json }
       - else
         = link_to 'Cancel', polymorphic_path(resource, action: :vote_cancel),
                             remote: true,
                             method: :patch,
-                            class: "vote link-cancel-#{resource.id} hidden",
+                            class: "vote link-cancel-#{resource.id} d-none",
                             data:{ type: :json }
         = link_to 'Up', polymorphic_path(resource, action: :vote_up),
                         remote: true,

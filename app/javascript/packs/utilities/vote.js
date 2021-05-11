@@ -8,12 +8,12 @@ $(document).on('turbolinks:load', function(){
     $('.rating-' + id).html('<p> Rating:' + rating + '</p>')
 
     if (voted){
-      $('.link-cancel-'+ id ).removeClass('hidden')
-      $('.link-vote-' + id ).addClass('hidden')
+      $('.link-cancel-'+ id ).removeClass('d-none')
+      $('.link-vote-' + id ).addClass('d-none')
     }
     else{
-      $('.link-cancel-'+ id ).addClass('hidden')
-      $('.link-vote-' + id ).removeClass('hidden')
+      $('.link-cancel-'+ id ).addClass('d-none')
+      $('.link-vote-' + id ).removeClass('d-none')
     }
 
   })

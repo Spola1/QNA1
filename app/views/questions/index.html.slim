@@ -1,7 +1,12 @@
-p= link_to 'Ask question', new_question_path
+div
+  h1 Questions
+  = link_to new_question_path, id: 'new_question_link' do
+    = octicon "plus-circle", height: 30, class: "text-error"
 
-.question-errors
-  = render 'shared/errors', resource: question
-
-.questions
-  = render @questions
+- if @questions.any?
+  .question-errors
+    = render 'shared/errors', resource: question
+  .questions
+    = render @questions
+- else
+  .center No questions found(

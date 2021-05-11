@@ -1,6 +1,6 @@
 = link_to 'Edit', '#', class: 'edit-answer-link', data: { answer_id: answer.id}
 
-= form_with model: answer, local: false, class: 'hidden', html: {id: "edit-answer-#{answer.id}"} do |f|
+= form_with model: answer, local: false, class: 'd-none', html: {id: "edit-answer-#{answer.id}"} do |f|
   p
     = f.label :body, 'Your answer'
     = f.text_area :body

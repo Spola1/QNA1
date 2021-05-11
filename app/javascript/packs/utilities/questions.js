@@ -7,9 +7,8 @@ function editQuestion(event){
   $(this).hide()
 
   var questionId = $(this).data('questionId')
-  $('form#edit-question-' + questionId).removeClass('hidden')
-  $('.attachments-' + questionId).removeClass('hidden')
-  $('.links-' + questionId).removeClass('hidden')
-  $('.award-' + questionId).removeClass('hidden')
+  $('form#edit-question-' + questionId).removeClass('d-none')
+  $('.attachments-' + questionId).removeClass('d-none')
+  $('.links-' + questionId).removeClass('d-none')
+  $('.award-' + questionId).removeClass('d-none')
 }
-

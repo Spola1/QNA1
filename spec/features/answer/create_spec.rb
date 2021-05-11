@@ -48,4 +48,29 @@ feature 'User can create answer', "
 
     expect(page).to have_content 'You need to sign in or sign up before continuing.'
   end
+
+  describe "multiple sessions" do
+    scenario "all users see new answer in real-time", js: true do
+      Capybara.using_session('user') do
+        sign_in(user)
+        visit question_path(question)
+      end
+
+      Capybara.using_session('guest') do
+        visit question_path(question)
+      end
+
+      Capybara.using_session('user') do
+        fill_in 'Your answer', with: 'some answer'
+        click_on 'Post answer'
+        within '.answers' do
+          expect(page).to have_content 'some answer'
+        end
+      end
+
+      Capybara.using_session('guest') do
+        expect(page).to have_content 'some answer'
+      end
+    end
+  end
 end

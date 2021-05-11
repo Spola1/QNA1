@@ -11,7 +11,7 @@ feature 'User can create question', "
     background do
       sign_in(user)
       visit questions_path
-      click_on 'Ask question'
+      click_on(id: "new_question_link")
     end
 
     given!(:questions) { create_list(:question, 5) }
@@ -44,10 +44,33 @@ feature 'User can create question', "
     end
   end
 
-  scenario 'Unauthenticated user tries to ask a question' do
-    visit questions_path
-    click_on 'Ask question'
+  describe "multiple sessions" do
+    scenario "all users see new question in real-time", js: true do
+      Capybara.using_session('user') do
+        sign_in(user)
+        visit questions_path
+      end
 
-    expect(page).to have_content 'You need to sign in or sign up before continuing.'
+      Capybara.using_session('guest') do
+        visit questions_path
+      end
+
+      Capybara.using_session('user') do
+        click_on(id: "new_question_link")
+
+        fill_in 'Title', with: 'Test question'
+        fill_in 'Body', with: 'text text text'
+        click_on 'Ask'
+
+        expect(page).to have_content 'Your question successfully created.'
+        expect(page).to have_content 'Test question'
+        expect(page).to have_content 'text text text'
+      end
+
+      Capybara.using_session('guest') do
+        expect(page).to have_content 'Test question'
+        expect(page).to_not have_content 'No questions found('
+      end
+    end
   end
 end
