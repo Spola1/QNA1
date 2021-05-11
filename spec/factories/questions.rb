@@ -11,15 +11,24 @@ FactoryBot.define do
     title
     body
     user
-
-    factory :question_with_answers do
-      transient do
-        answers_count {5}
-      end
-    end
+    best_answer { nil }
 
     trait :invalid do
       title { nil }
+    end
+
+    trait :with_best_answer do
+      best_answer factory: :answer
+    end
+
+    factory :question_with_answers do
+      transient do
+        answers_count { 5 }
+      end
+
+      after(:create) do |question, evaluator|
+        create_list(:answer, evaluator.answers_count, question: question)
+      end
     end
   end
 end

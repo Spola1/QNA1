@@ -21,9 +21,17 @@ RSpec.describe QuestionsController, type: :controller do
   end
 
   describe 'Get #show' do
+    before { get :show, params: { id: question } }
     it 'renders show view' do
-      get :show, params: { id: question }
       expect(response).to render_template :show
+    end
+
+    it 'assigns the requested question to @question' do
+      expect(assigns(:question)).to eq question
+    end
+
+    it 'assigns new answer for question' do
+      expect(assigns(:new_answer)).to be_a_new(Answer)
     end
   end
 
@@ -131,12 +139,12 @@ RSpec.describe QuestionsController, type: :controller do
 
       context 'with valid attributes' do
         it 'assings requested questions to @question' do
-          patch :update, params: { id: question, question: attributes_for(:question) }
+          patch :update, params: { id: question, question: attributes_for(:question) }, format: :js
           expect(assigns(:question)).to eq question
         end
 
         it 'change question attributes' do
-          patch :update, params: { id: question, question: { title: 'new title', body: 'new body' } }
+          patch :update, params: { id: question, question: { title: 'new title', body: 'new body' } }, format: :js
           question.reload
 
           expect(question.title).to eq 'new title'
@@ -144,13 +152,13 @@ RSpec.describe QuestionsController, type: :controller do
         end
 
         it 'redirects to updated question show view' do
-          patch :update, params: { id: question, question: attributes_for(:question) }
+          patch :update, params: { id: question, question: attributes_for(:question) }, format: :js
           expect(response).to redirect_to question
         end
       end
 
       context 'with invalid attributes' do
-        before { patch :update, params: { id: question, question: attributes_for(:question, :invalid) } }
+        before { patch :update, params: { id: question, question: attributes_for(:question, :invalid) }, format: :js }
 
         it 'does not change question' do
           question.reload
@@ -159,8 +167,8 @@ RSpec.describe QuestionsController, type: :controller do
           expect(question.body).to eq old_body
         end
 
-        it 're-renders edit view' do
-          expect(response).to render_template :edit
+        it 're-renders update view' do
+          expect(response).to render_template 'questions/update'
         end
       end
     end
@@ -170,21 +178,21 @@ RSpec.describe QuestionsController, type: :controller do
 
       context 'with valid attributes' do
         it 'not change question attributes' do
-          patch :update, params: { id: question, question: { title: 'new title', body: 'new body' } }
+          patch :update, params: { id: question, question: { title: 'new title', body: 'new body' } }, format: :js
           question.reload
 
           expect(question.title).to eq old_title
           expect(question.body).to eq old_body
         end
 
-        it 'redirects to show view' do
-          patch :update, params: { id: question, question: attributes_for(:question) }
-          expect(response).to render_template :show
+        it 'render update view' do
+          patch :update, params: { id: question, question: attributes_for(:question) }, format: :js
+          expect(response).to render_template 'questions/update'
         end
       end
 
       context 'with invalid attributes' do
-        before { patch :update, params: { id: question, question: attributes_for(:question, :invalid) } }
+        before { patch :update, params: { id: question, question: attributes_for(:question, :invalid) }, format: :js }
 
         it 'does not change question' do
           question.reload
@@ -193,16 +201,16 @@ RSpec.describe QuestionsController, type: :controller do
           expect(question.body).to eq old_body
         end
 
-        it 'redirects to show view' do
-          expect(response).to render_template :show
+        it 'render update view' do
+          expect(response).to render_template 'questions/update'
         end
       end
     end
 
     context 'Unauthorized user' do
-      it 'redirects to sign in view' do
-        patch :update, params: { id: question, question: attributes_for(:question) }
-        expect(response).to redirect_to new_user_session_path
+      it 'render index view' do
+        patch :update, params: { id: question, question: attributes_for(:question) }, format: :js
+        should respond_with(401)
       end
     end
   end
