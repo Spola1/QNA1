@@ -1,0 +1,3 @@
+<% if !@link.persisted? %>
+  $('.links-' + '<%= @link.linkable.id %>').html("<%= j render partial: 'links/links', locals: {resource: @link.linkable} %>")
+<% end %>

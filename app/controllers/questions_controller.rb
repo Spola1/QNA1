@@ -4,14 +4,19 @@ class QuestionsController < ApplicationController
 
   def index
     @questions = Question.all
+    @award = Award.new
   end
 
   def show
     @new_answer = Answer.new
+    @link = @new_answer.links.new
     question
   end
 
-  def new; end
+  def new
+    @link = question.links.new
+    @award = question.build_award
+  end
 
   def edit
     render :show, notice: "You can't edit someone else's question" unless current_user.author?(question)
@@ -54,7 +59,8 @@ class QuestionsController < ApplicationController
   end
 
   def question_params
-    params.require(:question).permit(:title, :body)
+    params.require(:question).permit(:title, :body, links_attributes: %i[id name url _destroy],
+                                                    award_attributes: %i[id title image _destroy])
   end
 
   def attach_files(question)

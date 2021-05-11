@@ -1,0 +1,3 @@
+<% if !@award.persisted? %>
+  $('.award-' + '<%= @award.question.id %>').html("")
+<% end %>

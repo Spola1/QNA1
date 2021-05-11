@@ -5,7 +5,10 @@ h1= @question.title
 p= @question.body
 
 div class = "attachments-#{@question.id}"
-  = render partial: 'attachments/attachments', locals: { resource: @question, hide: false }
+  = render partial: 'attachments/attachments', locals: { resource: @question }
+
+div class = "links-#{@question.id}"
+  = render partial: 'links/links', locals: { resource: @question}
 
 .answers
   -if @question.best_answer
@@ -22,4 +25,11 @@ div class = "attachments-#{@question.id}"
   p
     = f.label :files
     = f.file_field :files, multiple: true
+
+  p
+  #links
+    = f.fields_for :links do |link|
+    .actions
+      = link_to_add_association 'add link', f, :links, partial: 'links/link_fields'
+
   p= f.submit 'Post answer'

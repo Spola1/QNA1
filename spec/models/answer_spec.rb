@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Answer, type: :model do
-  let(:question)    { create(:question) }
+  let(:question)    { create(:question, :with_award) }
   let(:answer)      { create(:answer, question: question) }
   let(:best_answer) { create(:answer, question: question) }
 
@@ -18,6 +18,7 @@ RSpec.describe Answer, type: :model do
       answer.mark_as_best
     end
     it { expect(question.best_answer).to eq answer }
+    it { expect(question.award.user).to eq answer.user }
   end
 
   describe '#unmark_as_best' do
@@ -25,7 +26,8 @@ RSpec.describe Answer, type: :model do
       answer.mark_as_best
       answer.unmark_as_best
     end
-    it { expect(question.best_answer).to_not eq answer }
+    it { expect(question.best_answer).to eq nil }
+    it { expect(question.award.user).to eq nil }
   end
 
   describe '#best?' do

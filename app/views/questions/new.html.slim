@@ -10,4 +10,21 @@
   p
     = f.label :files
     = f.file_field :files, multiple: true
+
+  p Links:
+  #links
+    = f.fields_for :links do |link|
+      = render 'links/link_fields', f: link
+    .actions
+      = link_to_add_association 'add link', f, :links, partial: 'links/link_fields'
+
+  p
+    = f.fields_for :award do |a|
+      p
+        = a.label :title, 'Award title'
+        = a.text_field :title
+      p
+        = a.label :image
+        = a.file_field :image
+
   p= f.submit 'Ask'
