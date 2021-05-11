@@ -4,6 +4,8 @@
 h1= @question.title
 p= @question.body
 
+= render 'shared/vote', resource: @question
+
 div class = "attachments-#{@question.id}"
   = render partial: 'attachments/attachments', locals: { resource: @question }
 
@@ -18,7 +20,7 @@ div class = "links-#{@question.id}"
 .answer-errors
   = render 'shared/errors', resource: @new_answer
 
-= form_with model: [@question, @new_answer], local: false, class: 'new-answer' do |f|
+= form_with model: [@question, @new_answer], local: false, class: 'new-answer', data:{ type: :json } do |f|
   p
     = f.label :body, 'Your answer'
     = f.text_area :body

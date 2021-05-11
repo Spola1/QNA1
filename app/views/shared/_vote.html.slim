@@ -1,0 +1,41 @@
+div class = "rating-#{resource.id}"
+  p Rating:
+  = resource.rating
+
+.vote
+  div class = "vote-#{resource.id}"
+    -if !current_user&.author?(resource) && current_user
+      - if current_user.voted?(resource)
+        = link_to 'Cancel', polymorphic_path(resource, action: :vote_cancel),
+                            remote: true,
+                            method: :patch,
+                            class: "vote link-cancel-#{resource.id}",
+                            data:{ type: :json }
+        = link_to 'Up', polymorphic_path(resource, action: :vote_up),
+                        remote: true,
+                        method: :patch,
+                        class: "vote link-vote-#{resource.id} hidden",
+                        data:{ type: :json }
+
+        = link_to 'Down', polymorphic_path(resource, action: :vote_down),
+                          remote: true,
+                          method: :patch,
+                          class: "vote link-vote-#{resource.id} hidden",
+                          data:{ type: :json }
+      - else
+        = link_to 'Cancel', polymorphic_path(resource, action: :vote_cancel),
+                            remote: true,
+                            method: :patch,
+                            class: "vote link-cancel-#{resource.id} hidden",
+                            data:{ type: :json }
+        = link_to 'Up', polymorphic_path(resource, action: :vote_up),
+                        remote: true,
+                        method: :patch,
+                        class: "vote link-vote-#{resource.id}",
+                        data:{ type: :json }
+
+        = link_to 'Down', polymorphic_path(resource, action: :vote_down),
+                          remote: true,
+                          method: :patch,
+                          class: "vote link-vote-#{resource.id}",
+                          data:{ type: :json }

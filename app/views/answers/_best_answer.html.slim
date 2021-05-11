@@ -3,6 +3,8 @@ div class = "answer-#{best_answer.id}"
   b Best answer
   p= best_answer.body
 
+  = render 'shared/vote', resource: best_answer
+
   div class = "attachments-#{best_answer.id}"
     = render partial: 'links/links', locals: { resource: best_answer }
 
