@@ -27,11 +27,15 @@ gem 'devise'
 # gem 'image_processing', '~> 1.2'
 
 # Reduces boot times through caching; required in config/boot.rb
+gem 'active_storage_validations'
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'slim-rails'
 gem 'jquery-rails'
 gem "aws-sdk-s3", require: false
 gem "google-cloud-storage", "~> 1.11", require: false
+gem 'cocoon'
+gem 'mini_magick'
+gem 'validate_url'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

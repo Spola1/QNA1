@@ -4,7 +4,10 @@ div class = "answer-#{best_answer.id}"
   p= best_answer.body
 
   div class = "attachments-#{best_answer.id}"
-    = render partial:'attachments/attachments', locals: {resource: best_answer, hide: false}
+    = render partial: 'links/links', locals: { resource: best_answer }
+
+  div class = "attachments-#{best_answer.id}"
+    = render partial:'attachments/attachments', locals: {resource: best_answer }
 
   -if current_user&.author?(best_answer)
     = render partial: 'answers/form', locals: { answer: best_answer}

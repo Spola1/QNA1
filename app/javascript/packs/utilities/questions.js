@@ -8,8 +8,8 @@ function editQuestion(event){
 
   var questionId = $(this).data('questionId')
   $('form#edit-question-' + questionId).removeClass('hidden')
-
-  $('.attachments-' + questionId).find('a').each(function(){
-    $(this).removeClass('hidden-link')
-  })
+  $('.attachments-' + questionId).removeClass('hidden')
+  $('.links-' + questionId).removeClass('hidden')
+  $('.award-' + questionId).removeClass('hidden')
 }
+

@@ -2,8 +2,14 @@
 
   = link_to 'Edit', '#', class: 'edit-question-link', data: { question_id: question.id}
 
-  div class = "attachments-#{question.id}"
-    = render partial: 'attachments/attachments', locals: { resource: question, hide: true }
+  div class = "award-#{question.id} hidden"
+    = render partial: 'awards/awards', locals: {question: question }
+
+  div class = "attachments-#{question.id} hidden"
+    = render partial: 'attachments/attachments', locals: { resource: question }
+
+  div class = "links-#{question.id} hidden"
+    = render partial: 'links/links', locals: { resource: question }
 
   = form_with model: question, local: false, class: 'hidden', html: {id: "edit-question-#{question.id}"} do |f|
     p
@@ -15,6 +21,10 @@
     p
       = f.label :files
       = f.file_field :files, multiple: true
+    p
+    #links
+      .actions
+        = link_to_add_association 'add link', f, :links, partial: 'links/link_fields'
 
     p= f.submit 'Save'
 

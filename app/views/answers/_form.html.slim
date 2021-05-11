@@ -7,6 +7,14 @@
   p
     = f.label :files
     = f.file_field :files, multiple: true
+
+  p
+  #links
+    = f.fields_for :links do |link|
+
+    .actions
+      = link_to_add_association 'add link', f, :links, partial: 'links/link_fields'
+
   p= f.submit 'Save'
 
 = link_to 'Delete answer', answer_path(answer), remote: true, method: :delete

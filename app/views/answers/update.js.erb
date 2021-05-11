@@ -1,10 +1,10 @@
-$('.answer-errors').html("<%= render 'shared/errors', resource: @answer %>");
+$('.answer-errors').html('<%= render 'shared/errors', resource: @answer %>')
 
 <% if !@answer.errors.present? %>
   <% if question.best_answer %>
-    $('.answers').html('<%= j render partial: 'answers/best_answer', object: question.best_answer %>');
-    $('.answers').append('<%= j render partial: 'answers/answer', collection: question.other_answers, as: :answer %>');
+    $('.answers').html('<%= j render partial: 'answers/best_answer', object: question.best_answer %>')
+    $('.answers').append('<%= j render partial: 'answers/answer', collection: question.other_answers, as: :answer %>')
   <% else %>
-    $('.answers').html('<%= j render question.answers %>');
+    $('.answers').html('<%= j render question.answers %>')
   <% end %>
 <%end%>
