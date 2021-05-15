@@ -82,7 +82,7 @@ RSpec.describe QuestionsController, type: :controller do
       it 'renders show view' do
         login(user)
         get :edit, params: { id: question }
-        expect(response).to render_template :show
+        expect(response).to render_template nil
       end
     end
 
@@ -240,9 +240,9 @@ RSpec.describe QuestionsController, type: :controller do
         expect { delete :destroy, params: { id: question } }.to change(Question, :count).by(-1)
       end
 
-      it 'redirects to questions' do
+      it 'redirects to root' do
         delete :destroy, params: { id: question }
-        expect(response).to redirect_to questions_path
+        expect(response).to redirect_to root_path
       end
     end
 
@@ -254,9 +254,9 @@ RSpec.describe QuestionsController, type: :controller do
         expect { delete :destroy, params: { id: question } }.to_not change(Question, :count)
       end
 
-      it 'redirects to questions' do
+      it 'redirects to root' do
         delete :destroy, params: { id: question }
-        expect(response).to redirect_to questions_path
+        expect(response).to redirect_to root_path
       end
     end
 

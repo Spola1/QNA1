@@ -3,5 +3,5 @@
   - resource.files.each do |file|
     p
       = link_to file.filename.to_s, url_for(file)
-      - if current_user&.author?(resource)
+      - if can? :destroy, resource
         = link_to 'Delete file', attachment_path(file), remote: true, method: :delete, id: "delete-file-#{file.id}"

@@ -1,4 +1,4 @@
-- if current_user
+- if can? :create, Comment
   = link_to 'Add comment', '#', class: 'add-comment-link', id: commentable.id, data: { commentable_id: commentable.id}
   div class = "comments-form-#{commentable.id} d-none"
     = form_for [commentable, Comment.new], remote: true, html: {id: "add-comment-#{commentable.id}"} do |f|

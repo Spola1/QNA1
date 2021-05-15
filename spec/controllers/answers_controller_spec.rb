@@ -16,12 +16,6 @@ RSpec.describe AnswersController, type: :controller do
       expect(response).to render_template :edit
     end
 
-    it 'renders question view for authorized user' do
-      login(user)
-      get :edit, params: { id: answer }
-      expect(response).to redirect_to answer.question
-    end
-
     it 'renders sign in view for unauthorized user' do
       get :edit, params: { id: answer }
       expect(response).to redirect_to new_user_session_path
@@ -234,9 +228,9 @@ RSpec.describe AnswersController, type: :controller do
         expect { delete :destroy, params: { id: answer }, format: :js }.to_not change(Answer, :count)
       end
 
-      it 'render destroy view' do
+      it 'not render destroy view' do
         delete :destroy, params: { id: answer }, format: :js
-        expect(response).to render_template :destroy
+        expect(response).to render_template nil
       end
     end
 

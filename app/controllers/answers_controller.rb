@@ -2,12 +2,13 @@ class AnswersController < ApplicationController
   include Voted
 
   before_action :authenticate_user!
+  before_action :answer, only: %i[best destroy]
   after_action  :publish_answer, only: %i[create]
   helper_method :answer, :question
 
-  def edit
-    redirect_to answer.question, notice: "You can't edit someone else's answer" unless current_user.author?(answer)
-  end
+  authorize_resource
+
+  def edit;  end
 
   def create
     @answer = current_user.answers.new(answer_params)
@@ -17,23 +18,17 @@ class AnswersController < ApplicationController
   end
 
   def update
-    if current_user.author?(answer)
-      attach_files(answer)
-      answer.update(answer_params)
-    end
+    attach_files(answer)
+    answer.update(answer_params)
   end
 
   def best
-    answer.mark_as_best if current_user.author?(question)
+    @answer.mark_as_best
   end
 
   def destroy
-    if current_user.author?(answer)
-      answer.unmark_as_best if answer.best?
-      answer.destroy
-    else
-      flash.now[:notice] = "You cant't delete someone else's answer"
-    end
+    @answer.unmark_as_best if @answer.best?
+    @answer.destroy
   end
 
   private

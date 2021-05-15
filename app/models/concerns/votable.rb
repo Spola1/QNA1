@@ -12,7 +12,7 @@ module Votable
   def vote(user, vote_value)
     if user.voted?(self)
       votes.where(user_id: user.id).delete_all
-    elsif !user.author?(self)
+    elsif user_id != user.id
       votes.create(user_id: user.id, value: vote_value)
     end
   end

@@ -13,7 +13,6 @@ feature 'Author can delete his question', "
     visit question_path(question)
     click_on 'Delete question'
 
-    expect(page).to have_content 'Your question was successfully deleted.'
     expect(page).to_not have_content question.title
     expect(page).to_not have_content question.body
   end

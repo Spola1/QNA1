@@ -4,7 +4,7 @@ div class = "rating-#{resource.id}"
 
 .vote
   div class = "vote-#{resource.id}"
-    -if !current_user&.author?(resource) && current_user
+    -if can? :vote_up, resource
       - if current_user.voted?(resource)
         = link_to 'Cancel', polymorphic_path(resource, action: :vote_cancel),
                             remote: true,

@@ -5,5 +5,5 @@
       = link_to link.name, link.url
       - if link.gist?
         = javascript_include_tag link.url + '.js'
-      - if current_user&.author?(resource)
+      - if can? :destroy, link
         = link_to 'Delete link', link_path(link), remote: true, method: :delete, id: "delete-link-#{link.id}"

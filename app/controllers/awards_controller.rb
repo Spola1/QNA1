@@ -1,10 +1,14 @@
 class AwardsController < ApplicationController
+  # authorize_resource
+
   def index
+    authorize! :index, Award
     @awards = current_user&.awards
   end
 
   def destroy
     @award = Award.find(params[:id])
-    @award&.destroy if current_user&.author?(@award.question)
+    authorize! :destroy, @award.question
+    @award&.destroy
   end
 end
