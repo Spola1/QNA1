@@ -2,8 +2,11 @@ class QuestionsController < ApplicationController
   include Voted
 
   before_action :authenticate_user!, except: %i[index show]
+  before_action :question, only: %i[destroy edit]
   helper_method :question
-  after_action :publish_question, only: %i[create]
+  after_action  :publish_question, only: %i[create]
+
+  authorize_resource
 
   def index
     @questions = Question.all
@@ -22,9 +25,7 @@ class QuestionsController < ApplicationController
     @award = question.build_award
   end
 
-  def edit
-    render :show, notice: "You can't edit someone else's question" unless current_user.author?(question)
-  end
+  def edit; end
 
   def create
     @question = current_user.questions.new(question_params)
@@ -39,21 +40,15 @@ class QuestionsController < ApplicationController
 
   def update
     @questions = Question.all
-    if current_user.author?(question)
-      question.update(question_params)
-      attach_files(question)
-    end
+    question.update(question_params)
+    attach_files(question)
   end
 
   def destroy
-    if current_user.author?(question)
-      question.best_answer&.unmark_as_best
-      question.destroy
-      flash[:notice] = 'Your question was successfully deleted.'
-    else
-      flash[:notice] = "You cant't delete someone else's question"
-    end
-    redirect_to questions_path
+    @question.best_answer&.unmark_as_best
+    @question.destroy
+    flash[:notice] = 'Your question was successfully deleted.'
+    redirect_to root_path
   end
 
   private

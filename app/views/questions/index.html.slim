@@ -1,7 +1,8 @@
 div
   h1 Questions
-  = link_to new_question_path, id: 'new_question_link' do
-    = octicon "plus-circle", height: 30, class: "text-error"
+  -if can? :create, Question
+    = link_to new_question_path, id: 'new_question_link' do
+      = octicon "plus-circle", height: 30, class: "text-error"
 
 - if @questions.any?
   .question-errors

@@ -14,5 +14,5 @@ div class = "answer-#{best_answer.id}"
   div class = "comments-#{best_answer.id}"
     = render partial: 'comments/comments', locals: {resource: best_answer}
 
-  -if current_user&.author?(best_answer)
+  -if can? :edit, best_answer
     = render partial: 'answers/form', locals: { answer: best_answer}

@@ -13,8 +13,8 @@ div class = "answer-#{answer.id}"
   div class = "comments-#{answer.id}"
     = render partial: 'comments/comments', locals: {resource: answer}
 
-  -if current_user&.author?(answer.question)
+  -if can? :best, answer
     = link_to 'Choose', best_answer_path(answer), remote: true, method: :patch
 
-  -if current_user&.author?(answer)
+  -if can? :edit, answer
     = render partial:'answers/form', locals: {answer: answer}

@@ -1,4 +1,4 @@
--if current_user&.author?(question)
+-if can? :edit, question
 
   = link_to 'Edit', '#', class: 'edit-question-link', data: { question_id: question.id}
 
