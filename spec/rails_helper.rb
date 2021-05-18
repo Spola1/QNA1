@@ -41,6 +41,7 @@ RSpec.configure do |config|
   config.include ActiveStorageValidations::Matchers
   config.include OmniauthHelpers
   config.extend  WithModel
+  config.include ApiHelpers, type: :request
   Capybara.javascript_driver = :selenium_chrome_headless
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
@@ -82,4 +83,3 @@ Shoulda::Matchers.configure do |conf|
     with.library :rails
   end
 end
-
