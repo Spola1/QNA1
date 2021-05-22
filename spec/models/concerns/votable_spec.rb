@@ -28,7 +28,7 @@ describe 'votable' do
       expect(object.rating).to eq users.count
     end
 
-    it 'reduces rating after canceling voting' do
+    it 'changes rating after canceling voting' do
       users.each do |user|
         object.vote(user, 1)
       end

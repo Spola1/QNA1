@@ -37,5 +37,8 @@ class Ability
     end
 
     can :best, Answer, question: { user_id: user.id }
+
+    can :me, User
+
   end
 end

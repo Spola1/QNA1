@@ -1,4 +1,5 @@
 class OauthCallbacksController < Devise::OmniauthCallbacksController
+
   def github
     sign_in_with_provider('Github')
   end
@@ -18,7 +19,7 @@ class OauthCallbacksController < Devise::OmniauthCallbacksController
     else
       session["omniauth"] = request.env['omniauth.auth'].except(:extra)
       flash.now[:notice] = "Please enter your email and press 'Sign up'"
-      redirect_to new_user_registration_url
+      redirect_to new_user_registration_path
     end
   end
 end
