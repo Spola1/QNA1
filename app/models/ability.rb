@@ -19,7 +19,6 @@ class Ability
 
   def admin_abilities
     can :manage, :all
-    can :all_but_me, User
   end
 
   def user_abilities

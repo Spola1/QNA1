@@ -19,7 +19,7 @@ class Api::V1::AnswersController < Api::V1::BaseController
     if @answer.save
       render json: @answer
     else
-      render json: {errors: @answer.errors}, status: 422
+      render json: {errors: @answer.errors}, status: :unprocessible_entity
     end
   end
 
