@@ -8,8 +8,8 @@ RSpec.describe AnswersController, type: :controller do
   let(:question_w) { create(:question, :with_best_answer, user: user) }
 
   it_behaves_like 'voted' do
-    let(:object) {answer}
-    let(:user)   {answer.user}
+    let(:object) { answer }
+    let(:user)   { answer.user }
   end
 
   describe 'Get #edit' do

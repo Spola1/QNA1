@@ -1,5 +1,5 @@
 shared_examples_for 'voted' do
-  let!(:vote)  { create(:vote, user: user, votable: object, value: 1) }
+  let!(:vote) { create(:vote, user: user, votable: object, value: 1) }
 
   before { login(user) }
 

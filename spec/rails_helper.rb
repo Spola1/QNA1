@@ -83,3 +83,4 @@ Shoulda::Matchers.configure do |conf|
     with.library :rails
   end
 end
+

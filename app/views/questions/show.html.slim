@@ -6,6 +6,10 @@ p= @question.body
 
 = render 'shared/vote', resource: @question
 
+.subscription
+  -if can? :create, Subscription
+    = render 'subscriptions/subscription', question: @question
+
 div class = "attachments-#{@question.id}"
   = render partial: 'attachments/attachments', locals: { resource: @question }
 

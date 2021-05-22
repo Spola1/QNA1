@@ -1,5 +1,5 @@
 class Api::V1::QuestionsController < Api::V1::BaseController
-
+  
   before_action :set_question, only: %i[destroy update show]
 
   authorize_resource class: Question
@@ -19,7 +19,7 @@ class Api::V1::QuestionsController < Api::V1::BaseController
     if @question.save
       render json: @question
     else
-      render json: {errors: @question.errors}, status: 422
+      render json: { errors: @question.errors }, status: :unprocessable_entity
     end
   end
 
@@ -27,7 +27,7 @@ class Api::V1::QuestionsController < Api::V1::BaseController
     if @question.update(question_params)
       render json: @question
     else
-      render json: {errors: @question.errors}, status: 422
+      render json: { errors: @question.errors }, status: :unprocessable_entity
     end
   end
 
@@ -35,7 +35,7 @@ class Api::V1::QuestionsController < Api::V1::BaseController
     if @question.destroy
       render json: @question
     else
-      render json: {errors: @question.errors}, status: 422
+      render json: { errors: @question.errors }, status: :unprocessable_entity
     end
   end
 
@@ -48,5 +48,4 @@ class Api::V1::QuestionsController < Api::V1::BaseController
   def question_params
     params.require(:question).permit(:title, :body)
   end
-
 end

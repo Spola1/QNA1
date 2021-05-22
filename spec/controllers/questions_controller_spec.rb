@@ -7,8 +7,8 @@ RSpec.describe QuestionsController, type: :controller do
   let(:user)      { create(:user) }
 
   it_behaves_like 'voted' do
-    let(:object) {question}
-    let(:user) {question.user}
+    let(:object) { question }
+    let(:user) { question.user }
   end
 
   describe 'GET #index' do
@@ -207,7 +207,7 @@ RSpec.describe QuestionsController, type: :controller do
 
         it 'render update view' do
           patch :update, params: { id: question, question: attributes_for(:question) }, format: :js
-          expect(response).to render_template 'questions/update'
+          expect(response).to_not render_template :update
         end
       end
 
@@ -222,7 +222,7 @@ RSpec.describe QuestionsController, type: :controller do
         end
 
         it 'render update view' do
-          expect(response).to render_template 'questions/update'
+          expect(response).to_not render_template :update
         end
       end
     end

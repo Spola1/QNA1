@@ -23,9 +23,9 @@ class Ability
 
   def user_abilities
     guest_abilities
-    can :create, [Question, Answer, Comment]
+    can :create, [Question, Answer, Comment, Subscription]
     can :update, [Question, Answer],  user_id: user.id
-    can :destroy, [Question, Answer], user_id: user.id
+    can :destroy, [Question, Answer, Subscription], user_id: user.id
     can :destroy, Link,  linkable: { user_id: user.id }
     can :destroy, Award, question: { user_id: user.id }
     can :destroy, ActiveStorage::Attachment do |file|
@@ -39,6 +39,5 @@ class Ability
     can :best, Answer, question: { user_id: user.id }
 
     can :me, User
-
   end
 end
