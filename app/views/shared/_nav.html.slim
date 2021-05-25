@@ -4,10 +4,12 @@ nav class="navbar sticky-top navbar-light" style="background-color: #0dcaf0"
     -if user_signed_in?
       = link_to 'Awards', awards_path, class: 'navbar-text'
 
+  = render 'search/form'
+
   span class = 'navbar text'
     -if user_signed_in?
       b= current_user.email
-      = link_to 'Log out', destroy_user_session_path , method: :delete
+      = button_to 'Log out', destroy_user_session_path , method: :delete, class: 'btn btn-info'
 
     -else
-      = link_to 'Log_in ', new_user_session_path
+      = button_to 'Log_in ', new_user_session_path, class: 'btn btn-info'

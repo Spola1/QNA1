@@ -7,7 +7,7 @@ shared_examples_for 'voted' do
     it 'responds with success' do
       patch :vote_up, params: { id: object }, format: :json
       expect(response).to have_http_status(:success)
-      expect(response.body).to eq "{\"id\":#{object.id},\"rating\":#{object.rating},\"voted\":#{user.voted?(object)}}"
+      expect(response.body).to eq "{\"id\":#{object.id},\"rating\":#{object.rating},\"voted\":#{user.voted?(object)},\"klass\":\"#{object.class.to_s.downcase}\"}"
     end
   end
 
@@ -15,7 +15,7 @@ shared_examples_for 'voted' do
     it 'responds with success' do
       patch :vote_down, params: { id: object }, format: :json
       expect(response).to have_http_status(:success)
-      expect(response.body).to eq "{\"id\":#{object.id},\"rating\":#{object.rating},\"voted\":#{user.voted?(object)}}"
+      expect(response.body).to eq "{\"id\":#{object.id},\"rating\":#{object.rating},\"voted\":#{user.voted?(object)},\"klass\":\"#{object.class.to_s.downcase}\"}"
     end
   end
 
@@ -23,7 +23,7 @@ shared_examples_for 'voted' do
     it 'responds with success' do
       patch :vote_cancel, params: { id: object }, format: :json
       expect(response).to have_http_status(:success)
-      expect(response.body).to eq "{\"id\":#{object.id},\"rating\":#{object.rating},\"voted\":#{user.voted?(object)}}"
+      expect(response.body).to eq "{\"id\":#{object.id},\"rating\":#{object.rating},\"voted\":#{user.voted?(object)},\"klass\":\"#{object.class.to_s.downcase}\"}"
     end
   end
 end

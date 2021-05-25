@@ -9,6 +9,10 @@ require 'rspec/rails'
 require 'validate_url/rspec_matcher'
 require 'active_storage_validations/matchers'
 require 'with_model'
+require 'capybara/rspec'
+require 'capybara/rails'
+require 'thinking_sphinx/test'
+#require 'database_cleaner'
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
@@ -42,6 +46,16 @@ RSpec.configure do |config|
   config.include OmniauthHelpers
   config.extend  WithModel
   config.include ApiHelpers, type: :request
+
+
+  config.include Capybara::DSL
+  config.include Capybara::RSpecMatchers
+
+  config.before(:suite) { DatabaseCleaner.clean_with :truncation, except: %w(ar_internal_metadata) }
+  config.before(:each)  { DatabaseCleaner.strategy = :truncation }
+  config.before(:each)  { DatabaseCleaner.start }
+  config.after(:each)   { DatabaseCleaner.clean }
+
   Capybara.javascript_driver = :selenium_chrome_headless
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
@@ -49,7 +63,7 @@ RSpec.configure do |config|
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
   # instead of true.
-  config.use_transactional_fixtures = true
+  config.use_transactional_fixtures = false
 
   # You can uncomment this line to turn off ActiveRecord support entirely.
   # config.use_active_record = false
@@ -83,4 +97,3 @@ Shoulda::Matchers.configure do |conf|
     with.library :rails
   end
 end
-

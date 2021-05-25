@@ -4,7 +4,7 @@ RSpec.describe SubscriptionsService do
   let!(:user)     { create(:user) }
   let!(:question) { create(:question) }
   let!(:answer)   { create(:answer, question: question) }
-  let!(:subscription) {create(:subscription, question: question, user: user)}
+  let!(:subscription) { create(:subscription, question: question, user: user) }
 
   it 'sends new answer information to subscribed user' do
     question.subscriptions.each do |subscription|

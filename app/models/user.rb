@@ -40,6 +40,6 @@ class User < ApplicationRecord
   end
 
   def subscribed?(question)
-    self.subscriptions.where(question_id: question.id).any?
+    subscriptions.where(question_id: question.id).any?
   end
 end
