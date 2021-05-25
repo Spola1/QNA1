@@ -52,6 +52,6 @@ class AnswersController < ApplicationController
   def publish_answer
     return if @answer.errors.any?
 
-    ActionCable.server.broadcast("questions/#{@answer.question_id}", { answer: @answer, links: @answer.links } )
+    ActionCable.server.broadcast("questions/#{@answer.question_id}", { answer: @answer, links: @answer.links })
   end
 end
