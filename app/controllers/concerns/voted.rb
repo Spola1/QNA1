@@ -2,7 +2,6 @@ module Voted
   extend ActiveSupport::Concern
 
   included do
-    before_action :autorize!
     before_action :authenticate_user!, only: %i[vote_up vote_down vote_cancel]
     before_action :set_votable, only: %i[vote_up vote_down vote_cancel]
   end
@@ -29,7 +28,7 @@ module Voted
   end
 
   def render_json_with_rating(object)
-    render json: { id: object.id, rating: object.rating, voted: current_user&.voted?(object) }
+    render json: { id: object.id, rating: object.rating, voted: current_user&.voted?(object), klass: object.class.to_s.downcase }
   end
 
   def model_klass

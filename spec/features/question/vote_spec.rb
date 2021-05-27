@@ -16,24 +16,24 @@ feature 'User can vote for question', "
     end
 
     scenario 'change question rating by voting' do
-      within(".vote-#{question.id}") { click_on 'Up' }
-      within(".rating-#{question.id}") do
+      within(".vote-question-#{question.id}") { click_on 'Up' }
+      within(".rating-question-#{question.id}") do
         expect(page).to have_content '1'
       end
     end
 
     scenario 'change question rating by voting' do
-      within(".vote-#{question.id}") do
+      within(".vote-question-#{question.id}") do
         click_on 'Up'
         click_on 'Cancel'
       end
-      within(".rating-#{question.id}") do
+      within(".rating-question-#{question.id}") do
         expect(page).to have_content '0'
       end
     end
     scenario 'change question rating by voting' do
-      within(".vote-#{question.id}") { click_on 'Down' }
-      within(".rating-#{question.id}") do
+      within(".vote-question-#{question.id}") { click_on 'Down' }
+      within(".rating-question-#{question.id}") do
         expect(page).to have_content '-1'
       end
     end
@@ -47,7 +47,7 @@ feature 'User can vote for question', "
 
     scenario 'cant change question rating by voting' do
       expect(page).to_not have_css ".vote-#{question.id}"
-      within(".rating-#{question.id}") do
+      within(".rating-question-#{question.id}") do
         expect(page).to have_content '0'
       end
     end
@@ -60,7 +60,7 @@ feature 'User can vote for question', "
 
     scenario 'cant change question rating by voting' do
       expect(page).to_not have_css ".vote-#{question.id}"
-      within(".rating-#{question.id}") do
+      within(".rating-question-#{question.id}") do
         expect(page).to have_content '0'
       end
     end

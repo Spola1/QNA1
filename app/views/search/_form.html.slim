@@ -1,0 +1,4 @@
+= form_with url: search_path, class: 'form-search form-inline', method: :get do |form|
+    = form.text_field :query, placeholder: 'Search...', class: 'input-large search-query'
+    = form.select :resource, ['all', 'question', 'answer', 'comment', 'user']
+    = form.submit 'Find it!', class: 'btn btn-info'

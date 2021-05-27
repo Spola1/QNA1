@@ -79,7 +79,7 @@ describe Ability, type: :model do
     it { should_not be_able_to :best, create(:answer, question: other_question, user: user) }
     it { should_not be_able_to :best, create(:answer, question: other_question, user: other) }
 
-    it { should be_able_to :create, subscription}
+    it { should be_able_to :create, subscription }
     it { should be_able_to :destroy, subscription }
     it { should_not be_able_to :destroy, create(:subscription, question: question, user: other) }
   end

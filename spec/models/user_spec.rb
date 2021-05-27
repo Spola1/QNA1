@@ -48,8 +48,8 @@ RSpec.describe User, type: :model do
   end
 
   describe '#subscribed?' do
-    let!(:subscription) {create(:subscription, question: question, user: user)}
-    let!(:another_user) {create(:user) }
+    let!(:subscription) { create(:subscription, question: question, user: user) }
+    let!(:another_user) { create(:user) }
 
     context 'true if subscribed to question' do
       it { expect(user).to be_subscribed(question) }

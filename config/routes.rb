@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: 'oauth_callbacks', registrations: 'oauth_registrations'}
 
   root to: "questions#index"
+  get :search, to: 'search#search'
 
   namespace :api do
     namespace :v1 do

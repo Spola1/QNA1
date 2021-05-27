@@ -1,0 +1,6 @@
+- if resource.commentable.is_a? Question
+  p = link_to resource.body.truncate(25), question_path(resource.commentable)
+- else
+  p = link_to resource.body.truncate(25), question_path(resource.commentable.question)
+
+

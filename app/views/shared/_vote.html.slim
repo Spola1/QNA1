@@ -1,9 +1,9 @@
-div class = "rating-#{resource.id}"
+div class = "rating-#{resource.class.to_s.downcase}-#{resource.id}"
   p Rating:
   = resource.rating
 
 .vote
-  div class = "vote-#{resource.id}"
+  div class = "vote-#{resource.class.to_s.downcase}-#{resource.id}"
     -if can? :vote_up, resource
       - if current_user.voted?(resource)
         = link_to 'Cancel', polymorphic_path(resource, action: :vote_cancel),

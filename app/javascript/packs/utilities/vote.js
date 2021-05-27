@@ -4,8 +4,9 @@ $(document).on('turbolinks:load', function(){
     var id = e.detail[0].id
     var rating = e.detail[0].rating
     var voted = e.detail[0].voted
+    var klass = e.detail[0].klass
 
-    $('.rating-' + id).html('<p> Rating:' + rating + '</p>')
+    $('.rating-' + klass + '-' + id).html('<p> Rating:' + rating + '</p>')
 
     if (voted){
       $('.link-cancel-'+ id ).removeClass('d-none')
