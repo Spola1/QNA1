@@ -6,8 +6,8 @@ feature 'User can add links to question', "
   I'd like to be able to add links
 " do
   given(:user)      { create(:user) }
-  given(:gist_url)  { 'https://gist.github.com/HelenRaven/b98553ef55c033f7c37e7596f6da3151' }
-  given(:bad_url) { 'gist.github.com/HelenRaven/b98553ef55c033f7c37e7596f6da3151' }
+  given(:gist_url)  { 'https://gist.github.com/Spola1/4e8cf7a8bcb1f5987cbc42cf8b234efd' }
+  given(:bad_url) { 'gist.github.com/Spola1/4e8cf7a8bcb1f5987cbc42cf8b234efd' }
 
   before do
     sign_in(user)
