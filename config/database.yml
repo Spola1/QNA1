@@ -1,14 +1,20 @@
-default: &default
+default:
   adapter: postgresql
   encoding: unicode
-  username: <%= ENV['POSTGRES_USER'] %>
-  password: <%= ENV['POSTGRES_PASSWORD'] %>
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-
+  password: "<%= ENV['POSTGRES_PASSWORD'] %>"
+  pool: "<%= ENV.fetch(\"RAILS_MAX_THREADS\") { 5 } %>"
+  username: "<%= ENV['POSTGRES_USER'] %>"
 development:
-  <<: *default
+  adapter: postgresql
   database: tn_qna_development
-
+  encoding: unicode
+  password: "<%= ENV['POSTGRES_PASSWORD'] %>"
+  pool: "<%= ENV.fetch(\"RAILS_MAX_THREADS\") { 5 } %>"
+  username: "<%= ENV['POSTGRES_USER'] %>"
 test:
-  <<: *default
+  adapter: postgresql
   database: tn_qna_test
+  encoding: unicode
+  password: "<%= ENV['POSTGRES_PASSWORD'] %>"
+  pool: "<%= ENV.fetch(\"RAILS_MAX_THREADS\") { 5 } %>"
+  username: "<%= ENV['POSTGRES_USER'] %>"
