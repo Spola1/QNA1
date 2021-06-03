@@ -18,3 +18,10 @@ test:
   password: "<%= ENV['POSTGRES_PASSWORD'] %>"
   pool: "<%= ENV.fetch(\"RAILS_MAX_THREADS\") { 5 } %>"
   username: "<%= ENV['POSTGRES_USER'] %>"
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: tn_qna_production
+  password: "<%= ENV['POSTGRES_PASSWORD'] %>"
+  pool: "<%= ENV.fetch(\"RAILS_MAX_THREADS\") { 5 } %>"
+  username: "<%= ENV['POSTGRES_USER'] %>"
