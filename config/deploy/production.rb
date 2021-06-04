@@ -3,7 +3,7 @@
 # Defines a single server with a list of roles and multiple properties.
 # You can define all roles on a single server, or split them:
 
-server "142.93.107.230", user: "deployer", roles: %w{app db web}, primary: true
+server "157.230.99.51", user: "deployer", roles: %w{app db web}, primary: true
 set :rail_env, :production
 
 
