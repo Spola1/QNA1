@@ -2,26 +2,26 @@ default:
   adapter: postgresql
   encoding: unicode
   password: "<%= ENV['POSTGRES_PASSWORD'] %>"
-  pool: "<%= ENV.fetch(\"RAILS_MAX_THREADS\") { 5 } %>"
+  pool: "<%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>"
   username: "<%= ENV['POSTGRES_USER'] %>"
 development:
   adapter: postgresql
   database: tn_qna_development
   encoding: unicode
   password: "<%= ENV['POSTGRES_PASSWORD'] %>"
-  pool: "<%= ENV.fetch(\"RAILS_MAX_THREADS\") { 5 } %>"
+  pool: "<%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>"
   username: "<%= ENV['POSTGRES_USER'] %>"
 test:
   adapter: postgresql
   database: tn_qna_test
   encoding: unicode
   password: "<%= ENV['POSTGRES_PASSWORD'] %>"
-  pool: "<%= ENV.fetch(\"RAILS_MAX_THREADS\") { 5 } %>"
+  pool: "<%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>"
   username: "<%= ENV['POSTGRES_USER'] %>"
 production:
   adapter: postgresql
   database: qna_production
   encoding: unicode
   password: "<%= ENV['POSTGRES_PASSWORD'] %>"
-  pool: "<%= ENV.fetch(\"RAILS_MAX_THREADS\") { 5 } %>"
+  pool: "<%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>"
   username: "<%= ENV['POSTGRES_USER'] %>"

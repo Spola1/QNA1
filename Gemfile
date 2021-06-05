@@ -32,7 +32,6 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem 'slim-rails'
 gem 'jquery-rails'
 gem 'gon'
-gem 'cocoon'
 gem 'octicons_helper'
 gem 'handlebars-source', '~> 4.7', '>= 4.7.7'
 gem "aws-sdk-s3", require: false
