@@ -36,6 +36,7 @@ gem 'octicons_helper'
 gem 'handlebars-source', '~> 4.7', '>= 4.7.7'
 gem "aws-sdk-s3", require: false
 gem "google-cloud-storage", "~> 1.11", require: false
+gem 'cocoon'
 gem 'mini_magick'
 gem 'validate_url'
 gem 'with_model'
