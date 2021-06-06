@@ -6,7 +6,8 @@ $(document).on('turbolinks:load', function(){
     var voted = e.detail[0].voted
     var klass = e.detail[0].klass
 
-    $('.rating-' + klass + '-' + id).html('<p> Rating:' + rating + '</p>')
+    $('.rating-' + klass + '-' + id).html('<h1 class="text-center"><span class="badge bg-secondary text-white">' +
+                                          rating + '</span></h1>')
 
     if (voted){
       $('.link-cancel-'+ id ).removeClass('d-none')

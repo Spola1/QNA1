@@ -35,6 +35,8 @@ class QuestionsController < ApplicationController
     if @question.save
       redirect_to @question, notice: 'Your question successfully created.'
     else
+      @link = question.links.new
+      @award = question.build_award
       render :new
     end
   end
@@ -70,7 +72,8 @@ class QuestionsController < ApplicationController
   def publish_question
     return if @question.errors.any?
 
-    ActionCable.server.broadcast('questions', { question: @question })
+    ActionCable.server.broadcast('questions',
+                                 { question: @question, created: @question.created_at.to_date, user: @question.user.email })
   end
 
   def set_subscription

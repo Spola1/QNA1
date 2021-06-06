@@ -18,6 +18,8 @@ class Question < ApplicationRecord
 
   after_create :subscribe_author
 
+  default_scope { order(updated_at: :desc) }
+
   def other_answers
     answers.where.not(id: best_answer_id)
   end

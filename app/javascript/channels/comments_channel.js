@@ -14,7 +14,7 @@ $(document).on('turbolinks:load', function(){
         console.log(data.comment.commentable_id)
 
         if (gon.current_user_id != data.comment.user_id){
-          $('.comments-'+ data.comment.commentable_id).append('<p>' + data.comment.body + '</p>')
+          $('.comments-'+ data.comment.commentable_id).append('<p>' + data.comment.body + '</p><hr>')
         }
       }
     })
