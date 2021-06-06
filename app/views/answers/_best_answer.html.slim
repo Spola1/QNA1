@@ -1,18 +1,36 @@
-div class = "answer-#{best_answer.id}"
+- cache best_answer do
+  div class = "answer-#{best_answer.id}"
+    p
+      .card.mb-2
+        .card-header.text-right
+            small.text-muted
+              ' answered:
+              => best_answer.created_at.to_date
+              => best_answer.user.email
+        .row.g-0
+          .col-md-2
+            .bg-warning
+              = render 'shared/vote', resource: best_answer
+            .text-center
+              b Best answer
+          .col-md-10
+            .card-body
+              .card-title
+                => best_answer.body
 
-  b Best answer
-  p= best_answer.body
+              .card-text.text-right
+                = render partial:'answers/form', locals: {answer: best_answer}
+              .card-text.text-right
+                div class = "attachments-#{best_answer.id}"
+                  = render partial: 'attachments/attachments', locals: {resource: best_answer}
+              .card-text.text-right
+                div class = "links-#{best_answer.id}"
+                  = render partial: 'links/links', locals: { resource: best_answer}
+              .card-text.text-left
+                = render partial: 'comments/comments', locals: {resource: best_answer}
 
-  = render 'shared/vote', resource: best_answer
-
-  div class = "attachments-#{best_answer.id}"
-    = render partial: 'links/links', locals: { resource: best_answer }
-
-  div class = "attachments-#{best_answer.id}"
-    = render partial:'attachments/attachments', locals: {resource: best_answer }
-
-  div class = "comments-#{best_answer.id}"
-    = render partial: 'comments/comments', locals: {resource: best_answer}
-
-  -if can? :edit, best_answer
-    = render partial: 'answers/form', locals: { answer: best_answer}
+        .card-footer.text-left
+            small.text-muted
+              -if can? :edit, best_answer
+                => link_to 'Edit', '#', class: 'edit-answer-link', data: { answer_id: best_answer.id}
+                => link_to 'Delete answer', answer_path(best_answer), remote: true, method: :delete

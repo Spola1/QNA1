@@ -1,0 +1,9 @@
+.nested-fields
+  .mb-3.row
+    = a.label :title, 'Award title', class: "col-sm-2 col-form-label"
+    .col-sm-10
+      = a.text_field :title, class: "form-control"
+  .mb-3.row.input-group
+    = a.label :image, 'Award image', class: "col-sm-2 col-form-label"
+      .col-sm-10
+        = a.file_field :image,  class: "input-group-text"

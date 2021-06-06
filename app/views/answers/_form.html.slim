@@ -1,20 +1,16 @@
-= link_to 'Edit', '#', class: 'edit-answer-link', data: { answer_id: answer.id}
-
 = form_with model: answer, local: false, class: 'd-none', html: {id: "edit-answer-#{answer.id}"} do |f|
-  p
-    = f.label :body, 'Your answer'
-    = f.text_area :body
-  p
-    = f.label :files
-    = f.file_field :files, multiple: true
-
+  .mb-3.row
+    = f.label :body, 'Your answer', class: "col-sm-2 col-form-label"
+    .col-sm-10
+      = f.text_area :body, class: "form-control"
+  .mb-3.row.input-group
+    = f.label :files, class: "col-sm-2 col-form-label"
+    .col-sm-10
+      = f.file_field :files, multiple: true,  class: "input-group-text"
   p
   #links
     = f.fields_for :links do |link|
-
     .actions
-      = link_to_add_association 'add link', f, :links, partial: 'links/link_fields'
+      => link_to_add_association 'add link', f, :links, partial: 'links/link_fields'
 
   p= f.submit 'Save'
-
-= link_to 'Delete answer', answer_path(answer), remote: true, method: :delete

@@ -1,13 +1,15 @@
-div
-  h1 Questions
-  -if can? :create, Question
-    = link_to new_question_path, id: 'new_question_link' do
-      = octicon "plus-circle", height: 30, class: "text-error"
+-cache collection_cache_key_for(:question)
+  p
+    h1.text-success
+      ' Questions
+      -if can? :create, Question
+        => link_to new_question_path, id: 'new_question_link' do
+          = octicon "plus-circle", height: 30
 
-- if @questions.any?
-  .question-errors
-    = render 'shared/errors', resource: question
   .questions
-    = render @questions
-- else
-  .center No questions found(
+    - if @questions.any?
+      .question-errors
+        = render 'shared/errors', resource: question
+        = render @questions
+    - else
+      .center No questions found

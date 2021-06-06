@@ -3,4 +3,5 @@
     = question.award.title
     = image_tag question.award.image, size: "50x50"
     - if can? :destroy, question.award
-      = link_to 'delete award', award_path(question.award), remote: true, method: :delete, id: "delete-award-#{question.award.id}"
+      small
+        = link_to 'delete award', award_path(question.award), remote: true, method: :delete, id: "delete-award-#{question.award.id}"
