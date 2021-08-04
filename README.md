@@ -1,24 +1,17 @@
-# README
+# Questions and answers service
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Stackoverflow-like application.
 
-Things you may want to cover:
+Technologies used:
 
-* Ruby version
+TDD/BDD (RSpec, Capybara)
 
-* System dependencies
+ActionCable
 
-* Configuration
+ActiveJob, Sidekiq
 
-* Database creation
+OAuth
 
-* Database initialization
+CanCanCan
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+SphinxSearch
